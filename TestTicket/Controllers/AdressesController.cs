@@ -81,7 +81,7 @@ namespace TestTicket.Controllers
 
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AdressId,UserId,PostCode,Country,State,City,Neighborhood,Street,Number,Complement,Category")] Adresses adresses)
+        public async Task<IActionResult> Create( [FromForm]Adresses adresses)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace TestTicket.Controllers
 
                 
 
-                return RedirectToAction(nameof(Index));
+                return Redirect("https://localhost:44395/api/Adresses/Index/" + adresses.UserId.ToString()); ;
             }
             
             return View(adresses);
@@ -141,7 +141,7 @@ namespace TestTicket.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdressesExists(adresses.AdressId))
+                    if (!AdressesExists(adresses.AdressId.Value))
                     {
                         return NotFound();
                     }
@@ -197,7 +197,7 @@ namespace TestTicket.Controllers
                 Informations = "Usuário deletou o endereço " + id.ToString() + " para o usuário" + adresses.UserId.ToString()
             });
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Redirect("https://localhost:44395/api/Adresses/Index/" + adresses.UserId.ToString()); ;
         }
 
         private bool AdressesExists(int id)

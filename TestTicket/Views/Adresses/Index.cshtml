@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Endereços</h1>
+<h1>Endereços do usuário @Model.First().user.Name</h1>
 
 <p>
     <a asp-action="Create">Cadastrar novo endereço</a>
@@ -38,9 +38,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user)
             </th>
             <th></th>
         </tr>

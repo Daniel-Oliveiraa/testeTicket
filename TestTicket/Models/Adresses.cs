@@ -13,7 +13,7 @@ namespace TestTicket.Models
         [Column("adressId")]
         [Display(Name = "AdressId")]
         [Key]
-        public int AdressId { get; set; }
+        public int? AdressId { get; set; }
 
         [Column("userId")]
         [Display(Name = "UserId")]

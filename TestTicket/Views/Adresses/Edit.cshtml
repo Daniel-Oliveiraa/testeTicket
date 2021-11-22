@@ -68,10 +68,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <select class="form-control" asp-validation-for="Category" name="Categoria" id="Category">
+                <select asp-for="Category" class="form-control" asp-validation-for="Category" name="Categoria" id="Category">
                     <option value="R">Residencial</option>
                     <option value="C">Comercial</option>
                 </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -123,18 +124,15 @@
                         $("#State").val(data.uf);
 
                         if ($("#Street").val().length > 0)
-                            $("#Street")[0].disabled = true;
+                            $("#Street").attr('readonly', 'true');
                         if ($("#Neighborhood").val().length > 0)
-                            $("#Neighborhood")[0].disabled = true;
+                            $("#Neighborhood").attr('readonly', 'true');
                         if ($("#City").val().length > 0)
-                            $("#City")[0].disabled = true;
+                            $("#City").attr('readonly', 'true');
                         if ($("#State").val().length > 0)
-                            $("#State")[0].disabled = true;
+                            $("#State").attr('readonly', 'true');
                     }
 
-                },
-                error: function (error) {
-                    alert('CEP invalido')
                 }
             });
 
