@@ -25,7 +25,7 @@ Para isso precisamos executar o comando:
 atravez do cmd, na pasta raiz do projeto.
 
 #Criação das tabelas
-Após a subida do docker podemos abrir a solução do projeto, e com o Pakage Manger Console (localizado na barra de ferramentas, na aba ferramentas - Nuget Package Maneger), podemos
+Após a subida do docker podemos abrir a solução do projeto, e com o Pakage Manager Console (localizado na barra de ferramentas, na aba ferramentas - Nuget Package Manager), podemos
 abrir a pasta TestTicket com o comando " cd TestTicket " e logo em seguida rodar o comando 
       dotnet ef database update
 isso realizará a criação da base de dados e das tabelas utilizadas pela aplicação.      
