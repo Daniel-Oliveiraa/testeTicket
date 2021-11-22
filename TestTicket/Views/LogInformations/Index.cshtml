@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TestTicket.Models.LogInformation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listagem de Logs</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Informations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Informations)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.LogId">Detalhes</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

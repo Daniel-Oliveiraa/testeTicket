@@ -1,0 +1,147 @@
+﻿@model TestTicket.Models.Adresses
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+<h1>Editar endereço</h1>
+<hr />
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AdressId" style="display:none" />
+            <div class="form-group" style="display:none">
+                <input asp-for="UserId" class="form-control" value="@ViewBag.UserId" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label"></label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Neighborhood" class="control-label"></label>
+                <input asp-for="Neighborhood" class="form-control" />
+                <span asp-validation-for="Neighborhood" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Complement" class="control-label"></label>
+                <input asp-for="Complement" class="form-control" />
+                <span asp-validation-for="Complement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <select class="form-control" asp-validation-for="Category" name="Categoria" id="Category">
+                    <option value="R">Residencial</option>
+                    <option value="C">Comercial</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a href="https://localhost:44395/api/Adresses/Index/@ViewBag.userId">Voltar a listagem</a>
+</div>
+
+<script type="text/javascript">
+    $("#PostCode").inputmask({
+        mask: ["99999-999",],
+        keepStatic: true
+    });
+
+    $('#PostCode').on('blur', function () {
+
+        if ($.trim($("#PostCode").val()) != "") {
+
+            $.ajax({
+                type: 'GET',
+                url: "https://viacep.com.br/ws/" + $("#PostCode").val() + "/json",
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: false
+                },
+                success: function (data) {
+                    if (data.erro) {
+                        alert("Cep Invalido!")
+
+                        $("#Street")[0].disabled = false;
+                        $("#Neighborhood")[0].disabled = false;
+                        $("#City")[0].disabled = false;
+                        $("#State")[0].disabled = false;
+
+                        $("#PostCode").val("");
+                        $("#Street").val("");
+                        $("#Neighborhood").val("");
+                        $("#City").val("");
+                        $("#State").val("");
+                    }
+                    else {
+                        $("#Street").val(data.logradouro);
+                        $("#Neighborhood").val(data.bairro);
+                        $("#City").val(data.localidade);
+                        $("#State").val(data.uf);
+
+                        if ($("#Street").val().length > 0)
+                            $("#Street")[0].disabled = true;
+                        if ($("#Neighborhood").val().length > 0)
+                            $("#Neighborhood")[0].disabled = true;
+                        if ($("#City").val().length > 0)
+                            $("#City")[0].disabled = true;
+                        if ($("#State").val().length > 0)
+                            $("#State")[0].disabled = true;
+                    }
+
+                },
+                error: function (error) {
+                    alert('CEP invalido')
+                }
+            });
+
+        }
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
