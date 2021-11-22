@@ -59,7 +59,7 @@ namespace TestTicket.Controllers
 
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("userId,Name,Email,DateOfBrith,Phone")] Users users)
+        public async Task<IActionResult> Create( [FromForm] Users users)
         {
             if (ModelState.IsValid)
             {
