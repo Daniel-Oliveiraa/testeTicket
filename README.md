@@ -21,16 +21,23 @@ Deve se ter instalado também o Docker Compose.
 # Docker-Compose
 O arquivo docker-compose.yml localizado na pasta raiz do repositório realiza a subida do servidor sql que abrigará nosso banco de dados para o funcionamento da aplicação.
 Para isso precisamos executar o comando:
-        docker-compose up -d
+        - **docker-compose up -d**
 atravez do cmd, na pasta raiz do projeto.
 
-#Criação das tabelas
+# dotnet ef
+As referências ao Entity Framework Core podem ser nescessarias. As ferramentas da CLI (interface de linha de comando) para Entity Framework Core executam tarefas de desenvolvimento em tempo de design.
+o comando:
+- **dotnet tool install --global dotnet-ef**
+instala as referencias como uma ferramenta global.
+
+
+# Criação das tabelas
 Após a subida do docker podemos abrir a solução do projeto, e com o Pakage Manager Console (localizado na barra de ferramentas, na aba ferramentas - Nuget Package Manager), podemos
 abrir a pasta TestTicket com o comando " cd TestTicket " e logo em seguida rodar o comando 
-      dotnet ef database update
+      - **dotnet ef database update**
 isso realizará a criação da base de dados e das tabelas utilizadas pela aplicação.      
 
-#Para acessar a aplicação:
+# Para acessar a aplicação:
 
 **Swagger**
 https://localhost:44395/index.html
