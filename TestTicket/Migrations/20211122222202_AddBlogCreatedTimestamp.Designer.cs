@@ -10,8 +10,8 @@ using TestTicket.Data;
 namespace TestTicket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211121190109_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20211122222202_AddBlogCreatedTimestamp")]
+    partial class AddBlogCreatedTimestamp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -223,25 +223,24 @@ namespace TestTicket.Migrations
 
             modelBuilder.Entity("TestTicket.Models.Adresses", b =>
                 {
-                    b.Property<int>("AdressId")
+                    b.Property<int?>("AdressId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("adressId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Category")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("category");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("city");
 
-                    b.Property<string>("Complement")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("complement");
-
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("country");
 
@@ -254,10 +253,12 @@ namespace TestTicket.Migrations
                         .HasColumnName("number");
 
                     b.Property<string>("PostCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("postCode");
 
                     b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("state");
 
@@ -306,18 +307,22 @@ namespace TestTicket.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("DateOfBrith")
+                        .IsRequired()
                         .HasColumnType("datetime2")
                         .HasColumnName("dateOfBrith");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("email");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("phone");
 

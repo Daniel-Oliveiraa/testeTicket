@@ -45,7 +45,7 @@ namespace TestTicket.Controllers
             _context.LogInformation.Add(new LogInformation
             {
                 UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                Informations = "Usuário acessou Lista de Endereços do usuário" + id.ToString()
+                Informations = "Usuário acessou Lista de Endereços do usuário " + id.ToString()+" - "+DateTime.Now
             });
             await _context.SaveChangesAsync();
             return View(await applicationDbContext.ToListAsync());
@@ -88,7 +88,7 @@ namespace TestTicket.Controllers
                 _context.LogInformation.Add(new LogInformation
                 {
                     UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                    Informations = "Usuário criou novo endereço para o usuário" + adresses.UserId.ToString()
+                    Informations = "Usuário criou novo endereço para o usuário " + adresses.UserId.ToString() + " - " + DateTime.Now
                 });
                 _context.Add(adresses);
                 await _context.SaveChangesAsync();
@@ -155,7 +155,7 @@ namespace TestTicket.Controllers
                 _context.LogInformation.Add(new LogInformation
                 {
                     UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                    Informations = "Usuário editou o endereço "+adresses.AdressId.ToString()+" para o usuário" + adresses.UserId.ToString()
+                    Informations = "Usuário editou o endereço "+adresses.AdressId.ToString()+" para o usuário " + adresses.UserId.ToString() + " - " + DateTime.Now
                 });
                 await _context.SaveChangesAsync();
                 return Redirect("https://localhost:44395/api/Adresses/Index/"+userId.ToString());
@@ -183,9 +183,9 @@ namespace TestTicket.Controllers
             return View(adresses);
         }
 
-        [HttpPost("DeleteConfirmed/{id}")]
+        [HttpPost("Delete/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var adresses = await _context.Adresses.FindAsync(id);
             _context.Adresses.Remove(adresses);
@@ -194,7 +194,7 @@ namespace TestTicket.Controllers
             _context.LogInformation.Add(new LogInformation
             {
                 UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                Informations = "Usuário deletou o endereço " + id.ToString() + " para o usuário" + adresses.UserId.ToString()
+                Informations = "Usuário deletou o endereço " + id.ToString() + " para o usuário " + adresses.UserId.ToString() + " - " + DateTime.Now
             });
             await _context.SaveChangesAsync();
             return Redirect("https://localhost:44395/api/Adresses/Index/" + adresses.UserId.ToString()); ;

@@ -27,7 +27,7 @@ namespace TestTicket.Controllers
             _context.LogInformation.Add(new LogInformation
             {
                 UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                Informations = "Usuário acessou a lista de usuários existentes."
+                Informations = "Usuário acessou a lista de usuários existentes."+" - "+DateTime.Now
             });
             await _context.SaveChangesAsync();
             return View(await _context.Users.ToListAsync());
@@ -68,7 +68,7 @@ namespace TestTicket.Controllers
                 _context.LogInformation.Add(new LogInformation
                 {
                     UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                    Informations = "Usuário criou novo usuário" 
+                    Informations = "Usuário criou novo usuário "+" - "+DateTime.Now
                 });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -123,7 +123,7 @@ namespace TestTicket.Controllers
                 _context.LogInformation.Add(new LogInformation
                 {
                     UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                    Informations = "Usuário editou informações do usuário" + id.ToString()
+                    Informations = "Usuário editou informações do usuário" + id.ToString() + " - " + DateTime.Now
                 });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -159,7 +159,7 @@ namespace TestTicket.Controllers
             _context.LogInformation.Add(new LogInformation
             {
                 UserEmail = "podemosInserirEmailDeUsuarioLogadoParaControle",
-                Informations = "Usuário deletou informações do usuário" + id.ToString()
+                Informations = "Usuário deletou informações do usuário" + id.ToString() + " - " + DateTime.Now
             });
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

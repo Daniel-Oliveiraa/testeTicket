@@ -62,11 +62,6 @@
                 <span asp-validation-for="Number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Complement" class="control-label"></label>
-                <input asp-for="Complement" class="form-control" />
-                <span asp-validation-for="Complement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
                 <select asp-for="Category" class="form-control" asp-validation-for="Category" name="Categoria" id="Category">
                     <option value="R">Residencial</option>
@@ -76,11 +71,11 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <input type="submit" value="Salvar" class="btn btn-primary" />
-    </div>
+    
 </form>
-
+<div class="form-group">
+    <input type="submit" value="Salvar" class="btn btn-primary" />
+</div>
 <div>
     <a href="https://localhost:44395/api/Adresses/Index/@ViewBag.userId">Voltar a listagem</a>
 </div>
@@ -106,16 +101,18 @@
                     if (data.erro) {
                         alert("Cep Invalido!")
 
-                        $("#Street")[0].disabled = false;
-                        $("#Neighborhood")[0].disabled = false;
-                        $("#City")[0].disabled = false;
-                        $("#State")[0].disabled = false;
+                        $("#Street").attr('readonly', false);
+                        $("#Neighborhood").attr('readonly', false);
+                        $("#City").attr('readonly', false);
+                        $("#State").attr('readonly', false);
+                        $("#Country").attr('readonly', false);
 
                         $("#PostCode").val("");
                         $("#Street").val("");
                         $("#Neighborhood").val("");
                         $("#City").val("");
                         $("#State").val("");
+                        $("#Country").val("");
                     }
                     else {
                         $("#Street").val(data.logradouro);
@@ -123,14 +120,25 @@
                         $("#City").val(data.localidade);
                         $("#State").val(data.uf);
 
+                        $("#Country").val("Brasil");
+                        $("#Country").attr('readonly', true);
+
                         if ($("#Street").val().length > 0)
-                            $("#Street").attr('readonly', 'true');
+                            $("#Street").attr('readonly', true);
+                        else
+                            $("#Street").attr('readonly', false);
                         if ($("#Neighborhood").val().length > 0)
-                            $("#Neighborhood").attr('readonly', 'true');
+                            $("#Neighborhood").attr('readonly', true);
+                        else
+                            $("#Neighborhood").attr('readonly', false);
                         if ($("#City").val().length > 0)
-                            $("#City").attr('readonly', 'true');
+                            $("#City").attr('readonly', true);
+                        else
+                            $("#City").attr('readonly', false);
                         if ($("#State").val().length > 0)
-                            $("#State").attr('readonly', 'true');
+                            $("#State").attr('readonly', true);
+                        else
+                            $("#State").attr('readonly', false);
                     }
 
                 }

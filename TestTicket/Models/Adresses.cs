@@ -22,18 +22,22 @@ namespace TestTicket.Models
 
         [Column("postCode")]
         [Display(Name = "Cep")]
+        [Required]
         public string PostCode { get; set; }
 
         [Column("country")]
         [Display(Name = "País")]
+        [Required]
         public string Country { get; set; }
 
         [Column("state")]
         [Display(Name = "Estado")]
+        [Required]
         public string State { get; set; }
 
         [Column("city")]
         [Display(Name = "Cidade")]
+        [Required]
         public string City { get; set; }
 
         [Column("neighborhood")]
@@ -48,12 +52,9 @@ namespace TestTicket.Models
         [Display(Name = "Numero")]
         public string Number { get; set; }
 
-        [Column("complement")]
-        [Display(Name = "Complemento")]
-        public string Complement { get; set; }
-
         [Column("category")]
         [Display(Name = "Categoria")]
+        [Required]
         public string Category { get; set; }
 
         public virtual Users user { get; set; }

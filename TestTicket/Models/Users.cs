@@ -17,19 +17,23 @@ namespace TestTicket.Models
 
         [Column("name")]
         [Display(Name = "Nome")]
+        [Required]
         public string Name { get; set; }
 
         [Column("email")]
         [Display(Name = "Email")]
+        [Required]
         public string Email { get; set; }
 
         [Column("dateOfBrith")]
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
+        [Required]
         public DateTime? DateOfBrith { get; set; }
 
         [Column("phone")]
         [Display(Name = "Telefone")]
+        [Required]
         public string Phone { get; set; }
 
         [Display(Name = "Endereços")]

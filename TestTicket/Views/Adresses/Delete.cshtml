@@ -53,12 +53,6 @@
             @Html.DisplayFor(model => model.Number)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Complement)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Complement)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class = "col-sm-10">
@@ -75,6 +69,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="AdressId" />
         <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a href="https://localhost:44395/api/Adresses/Index/@ViewBag.userId">Voltar a listagem</a>
+        <a href="https://localhost:44395/api/Adresses/Index/@Model.UserId">Voltar a listagem</a>
     </form>
 </div>
